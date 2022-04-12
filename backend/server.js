@@ -6,7 +6,7 @@ require('dotenv').config()
 
 
 // routers
-const adminSignupRouter = require('./src/routes/adminSignupRouter')
+const adminRouter = require('./src/routes/adminRouter')
 
 
 // initialize app
@@ -28,7 +28,7 @@ mongoose.connect(DB, {
 
 
 // routes
-app.use('/adminSignup', adminSignupRouter)
+app.use('/admin', adminRouter)
 
 
 app.listen(PORT, () => {
