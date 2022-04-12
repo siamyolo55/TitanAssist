@@ -22,8 +22,6 @@ exports.adminSignup = async (req, res) => {
     // add to database
     await addAdminToDb(adminData)
 
-    console.log(adminData)
-
     const dataToSend = {
         companyId: adminData.companyId,
         adminId: adminData.adminId,

@@ -8,8 +8,8 @@ const adminController = require('../controllers/adminController')
 
 
 // add controllers to routes
-router.post('/signup', adminController.adminSignup)
 router.post('/login', adminController.adminLogin)
+router.post('/signup', adminController.adminSignup)
 
 
 module.exports = router
