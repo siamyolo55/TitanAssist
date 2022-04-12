@@ -38,7 +38,7 @@ exports.adminLogin = async (req, res) => {
             adminPassword: null
         }
         const admin = await Admin.find({adminUsername: loginData.adminUsername})
-        if(bcrypt.compare(req.body.adminPassword, admin[0].adminPassword)){
+        if(await bcrypt.compare(req.body.adminPassword, admin[0].adminPassword)){
             loginData.adminPassword = admin[0].adminPassword
             res.status(201).json({
                 message: 'login successful'
