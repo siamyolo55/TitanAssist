@@ -7,6 +7,7 @@ require('dotenv').config()
 
 // routers
 const adminRouter = require('./src/routes/adminRouter')
+const userRouter = require('./src/routes/userRouter')
 
 
 // initialize app
@@ -38,6 +39,7 @@ const connectDb = () => {
 
 // routes
 app.use('/admin', adminRouter)
+app.use('/user', userRouter)
 
 
 app.listen(PORT, () => {
