@@ -21,10 +21,19 @@ const DB = process.env.MONGOOSE_CONNECT
 
 
 // connect to db
-mongoose.connect(DB, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
+const connectDb = () => {
+    try {
+        console.log("connecting to db...")
+        const conn = mongoose.connect(DB, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        })
+        console.log("Db connected")
+    } catch (error) {
+        console.error(error)
+        console.log("Db connection failed")
+    }
+}
 
 
 // routes
@@ -33,5 +42,6 @@ app.use('/admin', adminRouter)
 
 app.listen(PORT, () => {
     console.log(`server running on port ${PORT}`)
+    connectDb()
 })
 
