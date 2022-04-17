@@ -1,4 +1,4 @@
-const mongoose = require('mongosee')
+const mongoose = require('mongoose')
 const Employee = require('./EmployeeSchema')
 
 const TeamSchema = new mongoose.Schema({

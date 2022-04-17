@@ -8,6 +8,9 @@ const userController = require('../controllers/userController')
 
 
 // add controllers to routes
-router.post('/login', userController.userLoginController)
+router.post('/login', userController.userLogin)
+router.post('/logout', userController.userLogout)
+router.post('/pause', userController.userPause)
+router.post('/unpause', userController.userUnpause)
 
 module.exports = router
