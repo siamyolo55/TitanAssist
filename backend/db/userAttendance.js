@@ -7,6 +7,7 @@ const userLogin = async (userData) => {
         if(!user){
             user = await Attendance.create({
                 employeeId: userData.id,
+                //loggedIn: true,
                 timesheet:[{
                     startTime: userData.startTime,
                     endTime: null,
@@ -14,10 +15,12 @@ const userLogin = async (userData) => {
                 }]
             })
             await user.save()
+            //console.log(user.loggedIn)
             return
         }
         user.timesheet.push({
             startTime: userData.startTime,
+            //loggedIn: true,
             endTime: null,
             breaks:[]
         })
@@ -31,6 +34,7 @@ const userLogin = async (userData) => {
 const userLogout = async (userData) => {
     try{
         let user = await Attendance.findOne({employeeId: userData.id})
+        //user.loggedIn = false
         user.timesheet[user.timesheet.length - 1].endTime = userData.endTime
         await user.save()
     }
@@ -70,7 +74,31 @@ const userUnpause = async (userData) => {
     }
 }
 
+const userBreakList = async (userData) => {
+    try{
+        let user = await Attendance.findOne({employeeId: userData.id})
+        const timeSheetLength = parseInt(user.timesheet.length)
+        const breaks = user.timesheet[timeSheetLength - 1].breaks
+        return breaks
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
+const userLoginStatus = async (userData) => {
+    try{
+        let user = await Attendance.findOne({employeeId: userData.id})
+        return user.loggedIn
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
 module.exports.userLogin = userLogin
 module.exports.userLogout = userLogout
 module.exports.userPause = userPause
 module.exports.userUnpause = userUnpause
+module.exports.userBreakList = userBreakList
+module.exports.userLoginStatus = userLoginStatus

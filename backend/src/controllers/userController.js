@@ -29,3 +29,19 @@ exports.userUnpause = async (req, res) => {
         start: start
     })
 }
+
+exports.userBreaklist = async (req, res) => {
+    let breaks = await userAttendance.userBreakList(req.body)
+
+    res.status(201).json({
+        breaks
+    })
+}
+
+exports.userLoginStatus = async (req, res) => {
+    let loginStatus = await userAttendance.userLoginStatus(req.body)
+
+    res.status(201).json({
+        loginStatus
+    })
+}

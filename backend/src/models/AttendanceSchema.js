@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 
 const AttendanceSchema = new mongoose.Schema({
     employeeId: String,
+    loggedIn: Boolean,
     timesheet:[
         {
             startTime: String,

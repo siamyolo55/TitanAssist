@@ -24,12 +24,10 @@ const DB = process.env.MONGOOSE_CONNECT
 // connect to db
 const connectDb = () => {
     try {
-        console.log("connecting to db...")
         const conn = mongoose.connect(DB, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
-        console.log("Db connected")
     } catch (error) {
         console.error(error)
         console.log("Db connection failed")
