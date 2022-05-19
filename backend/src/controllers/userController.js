@@ -40,7 +40,6 @@ exports.userBreaklist = async (req, res) => {
 
 exports.userLoginStatus = async (req, res) => {
     let loginStatus = await userAttendance.userLoginStatus(req.body)
-
     res.status(201).json({
         loginStatus
     })

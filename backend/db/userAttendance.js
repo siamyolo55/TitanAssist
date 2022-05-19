@@ -7,7 +7,7 @@ const userLogin = async (userData) => {
         if(!user){
             user = await Attendance.create({
                 employeeId: userData.id,
-                //loggedIn: true,
+                loggedIn: true,
                 timesheet:[{
                     startTime: userData.startTime,
                     endTime: null,
@@ -18,9 +18,9 @@ const userLogin = async (userData) => {
             //console.log(user.loggedIn)
             return
         }
+        user.loggedIn = true
         user.timesheet.push({
             startTime: userData.startTime,
-            //loggedIn: true,
             endTime: null,
             breaks:[]
         })
@@ -34,7 +34,7 @@ const userLogin = async (userData) => {
 const userLogout = async (userData) => {
     try{
         let user = await Attendance.findOne({employeeId: userData.id})
-        //user.loggedIn = false
+        user.loggedIn = false
         user.timesheet[user.timesheet.length - 1].endTime = userData.endTime
         await user.save()
     }
